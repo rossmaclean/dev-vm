@@ -22,10 +22,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
       -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
           platforms: linux/amd64
-          tags: rossmaclean/dev-vm:latest
+          tags: rossmaclean/dev-vm:${{ steps.date.outputs.date }}, rossmaclean/dev-vm:latest
