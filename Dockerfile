@@ -6,7 +6,7 @@ RUN pacman -Syyu --noconfirm
 # Install packages
 RUN pacman -S neovim npm sudo git base-devel go python3 jdk-openjdk --noconfirm
 
-USER=ross
+ENV USER=ross
 
 # Create user
 # Password is 'password' encrypted with 'perl -e 'print crypt($ARGV[0], "password")' 'password''
