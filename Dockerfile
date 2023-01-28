@@ -4,14 +4,14 @@ FROM archlinux
 RUN pacman -Syyu --noconfirm
 
 # Install packages
-RUN pacman -S neovim npm sudo git base-devel go --noconfirm
+RUN pacman -S neovim npm sudo git base-devel go python3 jdk-openjdk --noconfirm
 
 ARG $USER
 
 # Create user
 # Password is 'password' encrypted with 'perl -e 'print crypt($ARGV[0], "password")' 'password''
 RUN useradd -G wheel -m $USER -p "papAq5PwY/QQM%"
-RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo $USER ALL=(ALL) NOPASSWD:ALL >> /etc/sudoers
 
 USER $USER
 
