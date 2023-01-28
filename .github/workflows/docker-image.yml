@@ -32,4 +32,4 @@ jobs:
         with:
           push: true
           platforms: linux/amd64
-          tags: rossmaclean/dev-vm:${{ steps.date.outputs.date }}, rossmaclean/dev-vm:latest
+          tags: rossmaclean/dev-vm:${{ steps.date.outputs.date }},rossmaclean/dev-vm:latest
