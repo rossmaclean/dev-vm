@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          platforms: amd64,arm64
-          tags: rossmaclean/dev-vm:$(date +%s)
+          platforms: linux/amd64,linux/arm64
+          tags: rossmaclean/dev-vm:latest
