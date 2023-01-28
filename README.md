@@ -9,5 +9,15 @@ To run the container, simply type:
 
 # Todo
 Some things which are still in progress:
-- Install nvim plugins/lsp/debuggers etc automatically
-    - Likely through modifying the nvim config
+- Install AstroNvim plugins/lsp/debuggers etc automatically
+    - Likely through modifying the AstroNvim config
+
+## AstroNvim
+Until the relevant todo items are complete, the following must be run manually in AstroNvim
+- Python
+    - :LspInstall pyright
+    - :TSInstall python
+    - :DapInstall python
+
+- :Packerclean
+- :PackerSync
