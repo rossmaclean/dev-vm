@@ -23,6 +23,10 @@ RUN yay -Syyu --noconfirm
 WORKDIR /home/$USER
 RUN rm -rf /home/$USER/yay
 
+# Install zsh/ohmyzsh
+RUN sudo pacman -S zsh --noconfirm
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Install NVM
 RUN yay -S nvm --noconfirm
 RUN echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.bashrc
@@ -30,9 +34,5 @@ RUN echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.zshrc
 
 # Install AstroNvim
 RUN git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-
-# Install zsh/ohmyzsh
-RUN sudo pacman -S zsh --noconfirm
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ENTRYPOINT ["/bin/zsh"]
