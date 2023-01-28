@@ -6,20 +6,22 @@ RUN pacman -Syyu --noconfirm
 # Install packages
 RUN pacman -S neovim npm sudo git base-devel go --noconfirm
 
+ARG $USER
+
 # Create user
 # Password is 'password' encrypted with 'perl -e 'print crypt($ARGV[0], "password")' 'password''
-RUN useradd -G wheel -m ross -p "papAq5PwY/QQM%"
-RUN echo "ross ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -G wheel -m $USER -p "papAq5PwY/QQM%"
+RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-USER ross
+USER $USER
 
 # Install Yay
-RUN git clone https://aur.archlinux.org/yay.git /home/ross/yay
-WORKDIR /home/ross/yay
+RUN git clone https://aur.archlinux.org/yay.git /home/$USER/yay
+WORKDIR /home/$USER/yay
 RUN makepkg -si --noconfirm
 RUN yay -Syyu --noconfirm
-WORKDIR /home/ross
-RUN rm -rf /home/ross/yay
+WORKDIR /home/$USER
+RUN rm -rf /home/$USER/yay
 
 # Install NVM
 RUN yay -S nvm --noconfirm
@@ -28,7 +30,6 @@ RUN echo 'source /usr/share/nvm/init-nvm.sh' >> ~/.zshrc
 
 # Install AstroNvim
 RUN git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-RUN sed -i 's/-- ensure_installed = { "sumneko_lua" },/ensure_installed = { "pyright" }/' /home/ross/.config/nvim/lua/user_example/init.lua
 
 # Install zsh/ohmyzsh
 RUN sudo pacman -S zsh --noconfirm
