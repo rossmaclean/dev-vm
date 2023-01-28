@@ -11,7 +11,7 @@ ENV USER=ross
 # Create user
 # Password is 'password' encrypted with 'perl -e 'print crypt($ARGV[0], "password")' 'password''
 RUN useradd -G wheel -m $USER -p "papAq5PwY/QQM%"
-RUN echo $USER ALL=(ALL) NOPASSWD:ALL >> /etc/sudoers
+RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER $USER
 
